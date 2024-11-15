@@ -1,38 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import EventCard from '../../../components/ui/EventCard.tsx'; // Importa el componente EventCard
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import EventCard from '../../../components/ui/EventCard.tsx';
 import { getEventos } from '../../../services/EventService.ts';
 
+// Importa los módulos desde "swiper/modules"
+import { Navigation, Pagination } from 'swiper/modules';
+
 const EventList: React.FC = () => {
-    const [eventos, setEventos] = useState<any[]>([]); // Estado para almacenar los eventos
+    const [eventos, setEventos] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchEventos = async () => {
             try {
-                const data = await getEventos(); // Llama al servicio para obtener la lista de eventos
-                setEventos(data); // Si los eventos se cargan correctamente, los guardamos en el estado
+                const data = await getEventos();
+                setEventos(data);
             } catch (error) {
                 console.error('Error al cargar los eventos:', error);
-                // Aquí podrías mostrar un mensaje de error o eventos por defecto
             }
         };
 
-        fetchEventos(); // Llama a la función para cargar los eventos cuando se monta el componente
+        fetchEventos();
     }, []);
 
     return (
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
             {eventos.length > 0 ? (
-                eventos.map((evento: any) => (
-                    <EventCard
-                        key={evento.id}
-                        nombre={evento.nombre}
-                        descripcion={evento.descripcion}
-                        imagen={evento.imagen}
-                        fecha={evento.fecha}
-                        tematica={evento.tematica}
-                        id={evento.id}
-                    />
-                ))
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={20}
+                    slidesPerView={3}
+                    navigation
+                    pagination={{ clickable: true }}
+                    loop={true}
+                    className="w-full max-w-5xl"
+                >
+                    {eventos.map((evento) => (
+                        <SwiperSlide key={evento.id} className="flex justify-center">
+                            <EventCard
+                                nombre={evento.nombre}
+                                descripcion={evento.descripcion}
+                                imagen={evento.imagen}
+                                fecha={evento.fecha}
+                                tematica={evento.tematica}
+                                id={evento.id}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             ) : (
                 <p>No hay eventos disponibles</p>
             )}

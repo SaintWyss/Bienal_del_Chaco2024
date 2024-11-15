@@ -2,17 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/esculturas';
 
-// Obtener todos los escultores
-export const getEsculturas = async () => {
-    try {
-        const response = await axios.get(API_URL);
-        return response.data;
-    } catch (error) {
-        console.error('Error al obtener las esculturas:', error);
-        throw error;
-    }
-};
-
 export const getEsculturasbyEvent = async (eventoID: any) => {
     try {
         // Verificar si el eventoID está definido antes de hacer la solicitud
@@ -31,36 +20,47 @@ export const getEsculturasbyEvent = async (eventoID: any) => {
     }
 };
 
-
-// Crear un nuevo escultor
-export const createEscultura = async (esculturaData: any) => {
+// Obtener todas las esculturas
+export const getEsculturas = async () => {
     try {
-        await axios.post(API_URL, esculturaData);
-        return 'Escultura creada con éxito';
+        const response = await axios.get(API_URL);
+        return response.data;
     } catch (error) {
-        console.error('Error al crear el escultura:', error);
+        console.error('Error al obtener las esculturas:', error);
         throw error;
     }
 };
 
-// Actualizar un escultor existente
-export const updateEsculturas = async (id: string, esculturaData: any) => {
+
+// Crear una nueva escultura
+export const createEscultura = async (esculturaData: any) => {
+    try {
+        const response = await axios.post(API_URL, esculturaData);
+        return response.data; // Devuelve la escultura creada
+    } catch (error) {
+        console.error('Error al crear la escultura:', error);
+        throw error;
+    }
+};
+
+// Actualizar una escultura existente
+export const updateEscultura = async (id: string, esculturaData: any) => {
     try {
         const response = await axios.put(`${API_URL}/${id}`, esculturaData);
-        return response.data;
+        return response.data; // Devuelve la escultura actualizada
     } catch (error) {
         console.error('Error al actualizar la escultura:', error);
         throw error;
     }
 };
 
-// Eliminar un escultor
-export const deleteEsculture = async (id: string) => {
+// Eliminar una escultura
+export const deleteEscultura = async (id: string) => {
     try {
         const response = await axios.delete(`${API_URL}/${id}`);
-        return response.data;
+        return response.data; // Confirmación de la eliminación
     } catch (error) {
-        console.error('Error al eliminar el escultor:', error);
+        console.error('Error al eliminar la escultura:', error);
         throw error;
     }
 };

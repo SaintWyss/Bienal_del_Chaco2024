@@ -1,7 +1,7 @@
 import React from 'react';
-import SculptureList from '../../sculptures/components/SculptureList';
 import CreateSculpture from '../../sculptures/components/SculptureForm.tsx';
 import DeleteSculpture from '../../sculptures/components/ScultureDelete.tsx';
+import SculptureListAdmin from "./ScultureListAdmin.tsx";
 
 const SculptureManagement: React.FC = () => {
     const [selectedAction, setSelectedAction] = React.useState<string | null>(null);
@@ -11,7 +11,7 @@ const SculptureManagement: React.FC = () => {
             case 'create':
                 return <CreateSculpture />;
             case 'list':
-                return <SculptureList />;
+                return <SculptureListAdmin />;
             case 'delete':
                 return <DeleteSculpture />;
             default:
@@ -20,30 +20,72 @@ const SculptureManagement: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen p-4">
-            <div className="max-w-md mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
-                <h2 className="text-2xl text-sky-900 font-bold mb-6">Gestión de Esculturas</h2>
-                <div className="flex flex-col gap-4">
+        <div className="flex flex-col items-center min-h-screen p-8 space-y-8 ">
+            <div
+                className="max-w-md mx-auto relative overflow-hidden z-10 bg-white p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
+                <h2 className="text-center text-4xl font-extrabold text-gray-700">Gestión de Esculturas</h2>
+                <div className="flex flex-col gap-4 pb-12"> {/* Reduzco el espacio entre botones y agrego más espacio en la parte inferior */}
                     {/* Crear Escultura Button */}
                     <button
                         onClick={() => setSelectedAction('create')}
-                        className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md"
+                        className={`relative font-semibold text-white cursor-pointer border-none rounded-md w-full py-4 text-xl z-10 overflow-hidden
+                        ${selectedAction === 'create' ? 'bg-gradient-to-r from-purple-500 to-blue-500' : 'bg-gradient-to-r from-gray-500 to-gray-700 hover:from-purple-500 hover:to-blue-500'}`}
                     >
-                        Crear Escultura
+                        <span
+                            className="w-full py-4 absolute inset-0 flex items-center justify-center text-2xl z-10 backdrop-blur-lg rounded-md">
+                            Crear Escultura
+                        </span>
+                        {/* Blobs de fondo */}
+                        <span
+                            className="blob absolute top-0 left-0 w-20 h-12 rounded-full bg-orange-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-125"></span>
+                        <span
+                            className="blob absolute top-0 left-7 w-20 h-12 rounded-full bg-purple-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-125"></span>
+                        <span
+                            className="blob absolute top-[-1em] left-16 w-20 h-12 rounded-full bg-pink-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-125"></span>
+                        <span
+                            className="blob absolute top-6 left-20 w-20 h-12 rounded-full bg-blue-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-125"></span>
                     </button>
+
                     {/* Ver Lista de Esculturas Button */}
                     <button
                         onClick={() => setSelectedAction('list')}
-                        className="w-full py-2 bg-green-500 hover:bg-green-600 text-white rounded-md"
+                        className={`relative font-semibold text-white cursor-pointer border-none rounded-md w-full py-4 text-xl z-10 overflow-hidden
+                        ${selectedAction === 'list' ? 'bg-gradient-to-r from-green-500 to-green-700' : 'bg-gradient-to-r from-gray-500 to-gray-700 hover:from-green-500 hover:to-green-700'}`}
                     >
-                        Ver Lista de Esculturas
+                        <span
+                            className="w-full py-4 absolute inset-0 flex items-center justify-center text-2xl z-10 backdrop-blur-lg rounded-md">
+                            Ver Lista de Esculturas
+                        </span>
+                        {/* Blobs de fondo */}
+                        <span
+                            className="blob absolute top-0 left-0 w-24 h-16 rounded-full bg-orange-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-0 left-10 w-24 h-16 rounded-full bg-purple-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-[-1em] left-20 w-24 h-16 rounded-full bg-pink-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-8 left-24 w-24 h-16 rounded-full bg-blue-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
                     </button>
+
                     {/* Eliminar Escultura Button */}
                     <button
                         onClick={() => setSelectedAction('delete')}
-                        className="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded-md"
+                        className={`relative font-semibold text-white cursor-pointer border-none rounded-md w-full py-4 text-xl z-10 overflow-hidden
+                        ${selectedAction === 'delete' ? 'bg-gradient-to-r from-red-500 to-red-700' : 'bg-gradient-to-r from-gray-500 to-gray-700 hover:from-red-500 hover:to-red-700'}`}
                     >
-                        Eliminar Escultura
+                        <span
+                            className="w-full py-4 absolute inset-0 flex items-center justify-center text-2xl z-10 backdrop-blur-lg rounded-md">
+                            Eliminar Escultura
+                        </span>
+                        {/* Blobs de fondo */}
+                        <span
+                            className="blob absolute top-0 left-0 w-24 h-16 rounded-full bg-orange-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-0 left-10 w-24 h-16 rounded-full bg-purple-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-[-1em] left-20 w-24 h-16 rounded-full bg-pink-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
+                        <span
+                            className="blob absolute top-8 left-24 w-24 h-16 rounded-full bg-blue-500 opacity-80 transition-transform duration-300 ease-in-out group-hover:scale-500"></span>
                     </button>
                 </div>
                 {renderContent()}

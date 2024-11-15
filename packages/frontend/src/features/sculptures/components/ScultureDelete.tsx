@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getEsculturas, deleteEsculture } from '../../../services/SculptureService.ts';
+import { getEsculturas, deleteEscultura } from '../../../services/SculptureService.ts';
 
 const SculptureDelete: React.FC = () => {
     const [esculturas, setEsculturas] = useState<any[]>([]);
@@ -15,7 +15,7 @@ const SculptureDelete: React.FC = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            await deleteEsculture(id);
+            await deleteEscultura(id);
             alert('Escultura eliminada con éxito');
             fetchEsculturas(); // Recargar la lista de esculturas después de eliminar una
         } catch (error) {

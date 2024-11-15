@@ -25,7 +25,7 @@ const AdminPage: React.FC = () => {
                         autoPlay
                         loop
                         muted
-                        className="w-full h-full object-cover"
+                        className="w-full max-h-max py-7 object-cover"
                     />
                 </div>
 

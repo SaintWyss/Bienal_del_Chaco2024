@@ -13,11 +13,22 @@ export const getEscultores = async () => {
     }
 };
 
+// Obtener un escultor por ID
+export const getEscultor = async (id: string) => {
+    try {
+        const response = await axios.get(`${API_URL}/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error al obtener el escultor:', error);
+        throw error;
+    }
+};
+
 // Crear un nuevo escultor
 export const createEscultor = async (escultorData: any) => {
     try {
-        await axios.post(API_URL, escultorData);
-        return 'Escultor creado con éxito';
+        const response = await axios.post(API_URL, escultorData);
+        return response.data; // Devuelve el escultor creado
     } catch (error) {
         console.error('Error al crear el escultor:', error);
         throw error;
@@ -28,7 +39,7 @@ export const createEscultor = async (escultorData: any) => {
 export const updateEscultor = async (id: string, escultorData: any) => {
     try {
         const response = await axios.put(`${API_URL}/${id}`, escultorData);
-        return response.data;
+        return response.data; // Devuelve el escultor actualizado
     } catch (error) {
         console.error('Error al actualizar el escultor:', error);
         throw error;
@@ -39,7 +50,7 @@ export const updateEscultor = async (id: string, escultorData: any) => {
 export const deleteEscultor = async (id: string) => {
     try {
         const response = await axios.delete(`${API_URL}/${id}`);
-        return response.data;
+        return response.data; // Confirmación de la eliminación
     } catch (error) {
         console.error('Error al eliminar el escultor:', error);
         throw error;

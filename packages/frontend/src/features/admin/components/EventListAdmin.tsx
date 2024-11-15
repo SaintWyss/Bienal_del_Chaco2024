@@ -32,7 +32,7 @@ const EventListAdmin: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-wrap gap-6 justify-center">
+        <div className="grid grid-rows-2 grid-flow-col gap-10 px-20 justify-center">
             {eventos.length > 0 ? (
                 eventos.map((evento: any) => (
                     <EventCardAdmin
