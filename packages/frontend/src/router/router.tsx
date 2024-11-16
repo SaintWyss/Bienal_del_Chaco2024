@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home.tsx';
+import Home from '../features/home/Home.tsx';
 import Events from '../features/events/Events.tsx'; // Asegúrate de que este sea el componente que lista los eventos
 import Patron from "../pages/Patron.tsx";
 import Editions from "../pages/Editions.tsx";
