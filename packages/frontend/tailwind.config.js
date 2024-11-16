@@ -108,6 +108,20 @@ export default {
           900: "#18181B",
         },
       },
+      animation: {
+        fade: 'fadeIn 2s ease-in-out',
+        blob: 'blob 7s infinite',
+        bounceSlow: 'bounce 3s infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        blob: {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '50%': { transform: 'translate(30px, -20px) scale(1.1)' },
+        },
     },
   },
   // Configurar daisyUI para que funcione con temas y personalización
@@ -139,5 +153,10 @@ export default {
       },
     ],
   },
-  plugins: [require('daisyui')],
-}
+  plugins: [
+    require('daisyui'),
+    require('@tailwindcss/forms'), // Mejora los formularios
+    require('@tailwindcss/typography'), // Provee estilos para textos
+    require('@tailwindcss/aspect-ratio'), // Soporte para imágenes y videos responsivos
+  ],
+},}

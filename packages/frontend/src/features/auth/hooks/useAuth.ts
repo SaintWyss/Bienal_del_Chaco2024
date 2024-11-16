@@ -53,4 +53,4 @@ const useAuth = () => {
     return { user, error, handleLogin, handleLogout, fetchUser }; // Devuelve el estado del usuario y las funciones de autenticación
 };
 
-export default useAuth; // Exporta el hook para su uso en otros componentes
+export default useAuth; // Exporta el hook para su uso en otros components

@@ -4,13 +4,13 @@ import Events from '../features/events/Events.tsx'; // Asegúrate de que este se
 import Patron from "../pages/Patron.tsx";
 import Editions from "../pages/Editions.tsx";
 import LoginPage from '../features/auth/pages/LoginPage.tsx';
-import AdminPage from '../features/admin/page/AdminPage.tsx';
+import AdminPage from '../features/admin/AdminPage.tsx';
 import VotingPage from '../features/voting/VotingPage.tsx';
 import ProtectedRoute from './ProtectedRoute.tsx';
 import Registerpage from '../features/auth/pages/registerpage.tsx';
-import EventDetail from '../features/events/components/EventDetail.tsx';
-import VotingEventList from '../features/voting/VotingEventList';
-import VotacionQRCodeWrapper from '../features/voting/VotacionQRCodeWrapper';
+import EventDetail from '../features/events/EventDetail.tsx';
+import VotingEventList from '../features/voting/components/VotingEventList.tsx';
+import VotacionQRCodeWrapper from '../features/voting/QRCode/VotacionQRCodeWrapper.tsx';
 import Sculptures from "../features/sculptures/Sculptures.tsx";
 import Sculptors from "../features/sculptors/Sculptors.tsx";
 

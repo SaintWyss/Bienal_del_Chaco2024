@@ -25,4 +25,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     );
 };
 
-export default Modal; // Exporta el componente para su uso en otros componentes
+export default Modal; // Exporta el componente para su uso en otros components

@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from "../../../layout/Navbar/Navbar.tsx";
 import Footer from "../../../layout/footer/Footer.tsx";
 import Login from '../components/Login.tsx';
-import UserRoleIndicator from "../../../layout/Navbar/component/UserRoleIndicator.tsx";
+import UserRoleIndicator from "../../../layout/Navbar/component/ui/UserRoleIndicator.tsx";
 
 const LoginPage: React.FC = () => {
     return (

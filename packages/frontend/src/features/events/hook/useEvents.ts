@@ -30,4 +30,4 @@ const useEvents = () => {
     return { events, loading, error }; // Devuelve el estado de eventos, carga y error
 };
 
-export default useEvents; // Exporta el hook para su uso en otros componentes
+export default useEvents; // Exporta el hook para su uso en otros components

@@ -21,4 +21,4 @@ const Input: React.FC<InputProps> = ({ value, onChange, placeholder }) => {
     );
 };
 
-export default Input; // Exporta el componente para su uso en otros componentes
+export default Input; // Exporta el componente para su uso en otros components

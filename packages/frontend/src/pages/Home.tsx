@@ -1,21 +1,21 @@
-import React from 'react';
-import Header from '../layout/Header';
-import Footer from '../layout/footer/Footer.tsx';
+import DefaultLayout from "../layout/DefaultLayout.tsx";
 import Hero from "../layout/hero/Hero.tsx";
-import Navbar from "../layout/Navbar/Navbar.tsx";
-import Maps from '../layout/maps/Maps.tsx';
+import Maps from "../layout/maps/Maps.tsx";
+import EventList from "../features/events/components/EventList.tsx";
+import SculptorList from "../features/sculptors/components/SculptorList.tsx";
+import SculptureList from "../features/sculptures/components/SculptureList.tsx";
 
 
-const Home: React.FC = () => {
+export default function Home() {
     return (
-        <div className="flex flex-col min-h-screen">
-            <Navbar />
+        <DefaultLayout>
             <Hero />
-            <Header />
+            <EventList />
+            <SculptureList />
+            <SculptorList />
             <Maps />
-            <Footer />
-        </div>
+        </DefaultLayout>
     );
 };
 
-export default Home;
+

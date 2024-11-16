@@ -5,7 +5,6 @@ import logo2 from "./assets/images/b24-slide-principal-nuevo-logo-gobierno.png";
 const Hero: React.FC = () => {
     return (
         <section className="relative w-full h-screen">
-
             {/* Background Video */}
             <div className="absolute inset-0 overflow-hidden">
                 <video
@@ -15,20 +14,27 @@ const Hero: React.FC = () => {
                     muted
                     className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-10"></div>
             </div>
 
             {/* Content */}
-            <div className="relative flex flex-col items-start justify-center w-full h-full px-10">
+            <div className="relative flex flex-col items-center justify-center w-full h-full text-center text-white px-10 space-y-6">
                 <img
                     src={logo}
-                    alt="Biennale Art"
-                    className="max-w-full h-auto mb-4 bg-transparent"
+                    alt="Bienal Art"
+                    className="max-w-md h-auto bg-transparent animate-fadeInUp"
                 />
                 <img
                     src={logo2}
-                    alt="Biennale Art"
-                    className="max-w-full h-auto bg-transparent"
+                    alt="Gobierno Logo"
+                    className="max-w-sm h-auto bg-transparent animate-fadeInUp delay-200"
                 />
+                <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-lg animate-fadeInUp delay-400">
+                    Bienal Internacional de Escultura 2024
+                </h1>
+                <p className="text-lg md:text-xl max-w-3xl leading-relaxed text-gray-200 animate-fadeInUp delay-600">
+                    Donde el arte y la cultura convergen para crear algo único.
+                </p>
             </div>
         </section>
     );

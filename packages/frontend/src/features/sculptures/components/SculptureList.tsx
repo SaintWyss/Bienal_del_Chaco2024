@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getEsculturasbyEvent, getEsculturas } from '../../../services/SculptureService.ts';
-import SculptureCard from "../../../components/ui/SculptureCard.tsx"
+import SculptureCard from "./ui/SculptureCard.tsx"
 import { registerVote } from '../../../services/VotingService.ts'; // Importa la función de votación
 
 interface VoteButtonProps {
@@ -79,7 +79,6 @@ const SculptureList: React.FC<SculptureListProps> = ({ eventoId }) => {
                         fechaCreacion={escultura.fechaCreacion}
                         tematica={escultura.tematica}
                         id={escultura.id}
-                        puntuacion={5}
                     />
                     <VoteButton eventoId={eventoId} esculturaId={escultura.id}/>
                     </div>

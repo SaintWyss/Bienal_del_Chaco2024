@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../../layout/footer/Footer.tsx';
 import Navbar from "../../layout/Navbar/Navbar.tsx";
-import EventCard from "../../components/ui/EventCard.tsx"; // Componente para mostrar los detalles del evento
+import EventCard from "../events/components/ui/EventCard.tsx"; // Componente para mostrar los detalles del evento
 
 const VotingPage: React.FC = () => {
     const { eventoId } = useParams<{ eventoId: string }>(); // Obtener el eventoId de la URL
