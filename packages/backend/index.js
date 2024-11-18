@@ -12,6 +12,7 @@ const sponsorRoutes = require('./routes/sponsor');
 const votacionesRouter = require('./routes/votaciones');
 const eventosRoutes = require('./routes/eventos');
 
+
 const app = express();
 const PORT = 3000; // O usa el valor de puerto de .env si está configurado
 require('dotenv').config();

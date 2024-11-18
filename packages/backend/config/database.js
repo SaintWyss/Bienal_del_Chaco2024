@@ -1,9 +1,19 @@
+require('dotenv').config();  // Cargar las variables de entorno
+
 const { Sequelize } = require('sequelize');
 
-// Usamos la URL de la base de datos desde la variable de entorno
-const sequelize = new Sequelize(process.env.MYSQL_PUBLIC_URL, {
+// Verificar que la variable de entorno se esté cargando correctamente
+console.log(process.env.MYSQL_URL);  // Esto debería mostrar la URL completa de tu base de datos
+
+const sequelize = new Sequelize(process.env.MYSQL_URL, {
     dialect: 'mysql',
     logging: false,
+});
+
+sequelize.authenticate().then(() => {
+    console.log("Conexión exitosa a la base de datos");
+}).catch((error) => {
+    console.error("No se pudo conectar a la base de datos:", error);
 });
 
 module.exports = sequelize;
