@@ -28,7 +28,7 @@ Para más detalles, consulta [Pre Condiciones](pre-code/precondicion.md).
 2. **Navegar al Directorio del Frontend:**
 
     ```bash
-    cd package/frontend
+    cd packages/frontend
     ```
 
 3. **Instalar Dependencias de React:**
