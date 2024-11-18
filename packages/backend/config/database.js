@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('bienal', 'bienal', 'bienal', {
-    host: 'localhost',
+// Usamos la URL de la base de datos desde la variable de entorno
+const sequelize = new Sequelize(process.env.MYSQL_PUBLIC_URL, {
     dialect: 'mysql',
     logging: false,
 });
