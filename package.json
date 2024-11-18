@@ -12,9 +12,8 @@
     "concurrently": "^9.1.0"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "start": "lerna run start --stream",
-    "build": "lerna run build --stream",
+    "build": "yarn workspaces run build",
+    "start": "yarn workspaces run start",
     "dev:frontend": "yarn workspace frontend run dev",
     "dev:backend": "yarn workspace backend run dev",
     "dev": "concurrently \"yarn dev:frontend\" \"yarn dev:backend\""
