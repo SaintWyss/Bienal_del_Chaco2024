@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const User = require('../models/user'); // Asegúrate de que esta ruta sea correcta
+const User = require('../models/User');
 require('dotenv').config();
 
 const router = express.Router();
