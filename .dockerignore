@@ -1,17 +1,12 @@
-# Ignorar dependencias locales
+# Ignorar dependencias locales (excepto yarn.lock)
 node_modules
-yarn.lock
-package-lock.json
 
-# Ignorar frontend completo
-packages/frontend
-
-# Ignorar configuraciones locales y temporales
+# Ignorar configuraciones locales
 .env
 .DS_Store
 .idea
 .vscode
 
-# Ignorar archivos de compilación y otros datos irrelevantes
+# Ignorar artefactos de compilación
 dist
 build

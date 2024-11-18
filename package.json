@@ -6,14 +6,16 @@
     "packages/backend"
   ],
   "dependencies": {
+    "lerna": "^8.1.9",
     "qrcode.react": "^4.1.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
   },
   "scripts": {
-    "build": "yarn workspaces run build",
-    "start": "yarn workspaces run start",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream",
+    "start": "lerna run start --stream",
     "dev:frontend": "yarn workspace frontend run dev",
     "dev:backend": "yarn workspace backend run dev",
     "dev": "concurrently \"yarn dev:frontend\" \"yarn dev:backend\""
