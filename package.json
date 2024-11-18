@@ -1,5 +1,5 @@
 {
-  "name": "zaira",
+  "name": "SantiagoSW",
   "private": true,
   "workspaces": [
     "packages/frontend",
@@ -9,8 +9,7 @@
     "qrcode.react": "^4.1.0"
   },
   "devDependencies": {
-    "concurrently": "^9.1.0",
-    "lerna": "^8.1.8"
+    "concurrently": "^9.1.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",

@@ -1,7 +1,7 @@
 // routes/userRoutes.js
 const express = require('express');
 const authenticate = require('../middlewares/authMiddleware');
-const User = require('../models/user'); // Asegúrate de que este modelo esté definido correctamente
+const User = require('../models/User'); // Asegúrate de que este modelo esté definido correctamente
 
 const router = express.Router();
 
