@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/esculturas';
+const API_URL = '${process.env.API_URL}/esculturas';
 
 export const getEsculturasbyEvent = async (eventoID: any) => {
     try {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/eventos';
+const API_URL = '${process.env.API_URL}/eventos';
 
 // Obtener todos los eventos
 export const getEventos = async () => {

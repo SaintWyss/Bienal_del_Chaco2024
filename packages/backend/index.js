@@ -12,9 +12,9 @@ const sponsorRoutes = require('./routes/sponsor');
 const votacionesRouter = require('./routes/votaciones');
 const eventosRoutes = require('./routes/eventos');
 
-
 const app = express();
-const PORT = 3000; // O usa el valor de puerto de .env si está configurado
+const PORT = process.env.PORT || 8080;  // Usa el puerto de la nube o 3000 por defecto para desarrollo local
+ // O usa el valor de puerto de .env si está configurado
 require('dotenv').config();
 
 // Middlewares
@@ -41,12 +41,16 @@ app.use('/votar', votacionesRouter);
 app.use('/api/eventos', eventosRoutes);
 
 // Iniciar el servidor y la conexión con la base de datos
-sequelize.sync({ alter: true })
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
+if (process.env.NODE_ENV === 'production') {
+    sequelize.sync({ alter: true })
+        .then(() => {
+            app.listen(PORT, () => {
+                console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
+            });
+        })
+        .catch(err => {
+            console.error('Error al conectar con la base de datos:', err);
         });
-    })
-    .catch(err => {
-        console.error('Error al conectar con la base de datos:', err);
-    });
+} else {
+    console.log('Servidor desactivado en modo de desarrollo.');
+}

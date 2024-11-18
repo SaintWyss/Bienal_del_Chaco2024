@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/votar';
+const API_URL = '${process.env.API_URL}/votar';
 
 // Función para obtener el token de autenticación
 const getAuthToken = () => localStorage.getItem('token'); // Cambia según donde almacenes el token

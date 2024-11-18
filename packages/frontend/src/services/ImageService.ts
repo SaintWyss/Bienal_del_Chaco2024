@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Define la URL base para las peticiones al backend
-const API_URL = 'http://localhost:3000/api/images'; // Reemplaza con tu URL real
+const API_URL = '${process.env.API_URL}/api/images'; // Reemplaza con tu URL real
 
 /**
  * Obtiene una lista de imágenes asociadas a un evento o escultura.
