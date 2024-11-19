@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { User } from '../types/userTypes';
 
-const API_URL = 'http://localhost:3000/api/user';
+const API_URL = import.meta.env.VITE_API_URL + '/api/user';
 
 // Suponiendo que el token se guarda en el localStorage o en el estado de tu aplicación
 const getAuthToken = () => localStorage.getItem('token'); // O cualquier otro lugar donde almacenes el token

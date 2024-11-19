@@ -12,7 +12,16 @@ const AdminPage: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState<'events' | 'sculptures' | 'sculptors'>('events');
 
     useEffect(() => {
-        fetchUser();
+        const fetch = async () => {
+            try {
+                await fetchUser();
+                console.log('User fetched successfully');
+            } catch (err) {
+                console.error('Error in AdminPage useEffect:', err);
+            }
+        };
+
+        fetch(); // La promesa es manejada aquí
     }, [fetchUser]);
 
     return (
