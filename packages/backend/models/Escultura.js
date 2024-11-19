@@ -1,3 +1,6 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
 const Escultura = sequelize.define('Escultura', {
     nombre: {
         type: DataTypes.STRING,
