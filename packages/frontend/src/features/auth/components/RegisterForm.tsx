@@ -10,13 +10,12 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate(); // Inicializa el hook useNavigate
-
+    const API_URL = import.meta.env.VITE_API_URL + '/api';
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-            console.log('Enviando datos:', { username, email, password });
-            const response = await axios.post('${API_URL}/auth/register', {
+            const response = await axios.post(`${API_URL}/auth/register`, {
                 username,
                 email,
                 password,
