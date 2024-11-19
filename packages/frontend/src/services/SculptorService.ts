@@ -14,12 +14,12 @@ export const getEscultores = async () => {
 };
 
 // Crear un nuevo escultor
-export const createEscultor = async (data: any) => {
+export const createEscultor = async (escultorData: any) => {
     try {
-        const response = await axios.post(`${API_URL}/escultores`, data);
-        return response.data;
+        const response = await axios.post(API_URL, escultorData);
+        return response.data; // Devuelve el escultor creado
     } catch (error) {
-        console.error('Error al crear escultor:', error);
+        console.error('Error al crear el escultor:', error);
         throw error;
     }
 };

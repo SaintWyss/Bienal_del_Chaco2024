@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { getEsculturasbyEvent, getEsculturas } from '../../../services/SculptureService.ts';
-import SculptureCard from "./ui/SculptureCard.tsx"
-import { registerVote } from '../../../services/VotingService.ts'; // Importa la función de votación
+import SculptureCard from './ui/SculptureCard.tsx';
+import { registerVote } from '../../../services/VotingService.ts';
 
 interface VoteButtonProps {
-    eventoId?: number;  // Define que eventoId es un string
-    esculturaId: number;  // Define que esculturaId es un string
+    eventoId?: number;
+    esculturaId: number;
 }
 
 const VoteButton: React.FC<VoteButtonProps> = ({ eventoId, esculturaId }) => {
-    const [isVoted, setIsVoted] = useState(false); // Estado para controlar si ya se votó
+    const [isVoted, setIsVoted] = useState(false);
 
-    // Función que se ejecuta al hacer clic en el botón
     const handleVoteClick = async () => {
         try {
-            // Si ya se votó, no hacer nada
             if (isVoted) return;
 
-            // Llamada para registrar el voto
-            await registerVote(esculturaId, 'Sí', eventoId);  // Aquí puedes cambiar el voto a 'Sí' o 'No' según lo que necesites
+            await registerVote(esculturaId, 'Sí', eventoId);
 
-            // Cambiar el estado para mostrar que el voto se registró
             setIsVoted(true);
         } catch (error) {
             console.error('Error al registrar el voto:', error);
@@ -29,66 +25,70 @@ const VoteButton: React.FC<VoteButtonProps> = ({ eventoId, esculturaId }) => {
 
     return (
         <button
-            onClick={handleVoteClick} // Asigna la función que maneja el clic
-            className="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
-                border-blue-600
-                border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
-                active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+            onClick={handleVoteClick}
+            disabled={isVoted}
+            className={`cursor-pointer transition-all px-6 py-2 rounded-lg border-b-[4px]
+                ${isVoted
+                ? 'bg-gray-400 text-gray-700 cursor-not-allowed border-gray-500'
+                : 'bg-blue-500 text-white border-blue-600 hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]'
+            }`}
         >
-            {isVoted ? 'Voto Registrado' : 'Votar'} {/* Cambia el texto dependiendo del estado del voto */}
+            {isVoted ? 'Voto Registrado' : 'Votar'}
         </button>
     );
 };
 
 interface SculptureListProps {
-    eventoId?: number;  // Hacemos que 'eventoId' sea opcional
+    eventoId?: number;
 }
 
 const SculptureList: React.FC<SculptureListProps> = ({ eventoId }) => {
     const [esculturas, setEsculturas] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchEsculturas = async () => {
             try {
-                let data;
-                if (eventoId) {
-                    // Si existe eventoId, se obtienen las esculturas por evento
-                    data = await getEsculturasbyEvent(eventoId);
-                } else {
-                    // Si no existe eventoId, se obtienen todas las esculturas
-                    data = await getEsculturas();
-                }
+                setLoading(true);
+                const data = eventoId ? await getEsculturasbyEvent(eventoId) : await getEsculturas();
                 setEsculturas(data);
             } catch (error) {
                 console.error('Error al obtener las esculturas:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchEsculturas();
-    }, [eventoId]); // Agregamos 'eventoId' a las dependencias para que se vuelva a ejecutar cuando cambie
+    }, [eventoId]);
+
+    if (loading) {
+        return <p className="text-center text-gray-500">Cargando esculturas...</p>;
+    }
 
     return (
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             {esculturas.length > 0 ? (
                 esculturas.map((escultura: any) => (
-                    <div>
-                    <SculptureCard
-                        key={escultura.id}
-                        nombre={escultura.nombre}
-                        descripcion={escultura.descripcion}
-                        fechaCreacion={escultura.fechaCreacion}
-                        tematica={escultura.tematica}
-                        id={escultura.id}
-                    />
-                    <VoteButton eventoId={eventoId} esculturaId={escultura.id}/>
+                    <div key={escultura.id} className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center">
+                        <SculptureCard
+                            nombre={escultura.nombre}
+                            descripcion={escultura.descripcion}
+                            fechaCreacion={escultura.fechaCreacion}
+                            tematica={escultura.tematica}
+                            id={escultura.id}
+                            imagen={escultura.imagen} // Agregado para mostrar la imagen
+                        />
+                        <div className="mt-4">
+                            <VoteButton eventoId={eventoId} esculturaId={escultura.id} />
+                        </div>
                     </div>
                 ))
             ) : (
-                <p>No hay esculturas disponibles</p>
+                <p className="text-center text-gray-500">No hay esculturas disponibles</p>
             )}
         </div>
     );
 };
 
 export default SculptureList;
-
