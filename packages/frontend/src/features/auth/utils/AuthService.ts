@@ -33,11 +33,15 @@ export const login = async (username: string, password: string) => {
     }
 };
 
+import { useNavigate } from 'react-router-dom';
+
 export const logout = () => {
     tokenService.removeToken();
     tokenService.removeRole();
-    window.location.reload();
+    const navigate = useNavigate();
+    navigate('/');
 };
+
 
 export const getUser = async () => {
     try {
