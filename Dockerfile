@@ -3,29 +3,15 @@ FROM node:18 AS builder
 
 WORKDIR /app
 
-# Copiar archivos esenciales
+# Copiar archivos esenciales del backend desde la raíz
 COPY package.json yarn.lock ./
 
-# Instalar dependencias
-RUN yarn install
+# Copiar archivos del backend
+COPY packages/backend ./packages/backend
 
-# Copiar el resto del código fuente
-COPY . .
-
-# Construir el frontend
-RUN yarn workspace frontend build
-
-# Etapa de producción
-FROM node:18-alpine AS production
-
-WORKDIR /app
-
-# Copiar los artefactos desde la etapa de construcción
-COPY --from=builder /app/packages/backend ./packages/backend
-COPY --from=builder /app/packages/frontend/dist ./packages/frontend/dist
-
-# Instalar dependencias de producción para el backend
+# Instalar dependencias del backend
 WORKDIR /app/packages/backend
 RUN yarn install --production
 
+# Comando para iniciar el backend
 CMD ["node", "index.js"]

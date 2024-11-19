@@ -7,6 +7,5 @@ node_modules
 .idea
 .vscode
 
-# Ignorar artefactos de compilación
-dist
-build
+# Ignorar carpetas innecesarias del monorepo
+packages/frontend
