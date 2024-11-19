@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { tokenService } from '../services/tokenService.ts';
 
-const API_URL = 'http://localhost:3000/api/auth';
+const API_URL = import.meta.env.VITE_API_URL + '/api/auth';
 
 export const register = async (username: string, email: string, password: string) => {
     try {

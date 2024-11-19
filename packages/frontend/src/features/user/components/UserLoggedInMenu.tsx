@@ -45,9 +45,6 @@ const UserLoggedInMenu: React.FC<UserLoggedInMenuProps> = ({ role }) => {
                         )}
                         {user && (
                             <>
-                                <Link to="/vote" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
-                                    Votar
-                                </Link>
                                 <button
                                     onClick={handleLogoutClick}
                                     className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"

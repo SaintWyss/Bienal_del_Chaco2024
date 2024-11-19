@@ -1,4 +1,4 @@
-// src/features/auth/utils/AuthService.ts
+
 export const tokenService = {
     setToken: (token: string) => localStorage.setItem('token', token),
     getToken: () => localStorage.getItem('token'),

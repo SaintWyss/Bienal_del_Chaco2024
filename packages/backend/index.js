@@ -13,7 +13,7 @@ require('dotenv').config(); // Cargar variables de entorno
 
 // Crear la aplicación de Express
 const app = express();
-const PORT = process.env.PORT || 3000; // Usar el puerto especificado en .env o 3000 por defecto
+const PORT = process.env.PORT; // Usar el puerto especificado en .env o 3000 por defecto
 
 // Middlewares
 app.use(cors()); // Permitir peticiones desde cualquier origen
@@ -40,20 +40,6 @@ sequelize
     .then(() => {
         const server = app.listen(PORT, () => {
             console.log(`Servidor backend corriendo en el puerto ${PORT}`);
-        });
-
-        // Detectar si el puerto está ocupado
-        server.on('error', (error) => {
-            if (error.code === 'EADDRINUSE') {
-                console.error(`El puerto ${PORT} ya está en uso.`);
-                server.close(() => {
-                    console.log('Intentando usar un puerto diferente...');
-                    app.listen(0, () => {
-                        const address = server.address();
-                        console.log(`Servidor ahora corriendo en un puerto alternativo: ${address.port}`);
-                    });
-                });
-            }
         });
     })
     .catch((err) => {
