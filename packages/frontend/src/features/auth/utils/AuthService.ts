@@ -3,21 +3,6 @@ import { tokenService } from '../services/tokenService.ts';
 
 const API_URL = import.meta.env.VITE_API_URL + '/api';
 
-export const register = async (username: string, email: string, password: string) => {
-    try {
-        const response = await axios.post(`${API_URL}/auth/register`, { username, email, password });
-        const { token, user } = response.data;
-
-        tokenService.setToken(token);
-        tokenService.setRole(user.role);
-
-        return user;
-    } catch (error) {
-        console.error('Error al registrar al usuario:', error);
-        return null;
-    }
-};
-
 export const login = async (username: string, password: string) => {
     try {
         const response = await axios.post(`${API_URL}/auth/login`, { username, password });
