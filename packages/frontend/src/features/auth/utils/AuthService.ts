@@ -33,10 +33,11 @@ export const login = async (username: string, password: string) => {
     }
 };
 
+
 export const logout = () => {
     tokenService.removeToken();
     tokenService.removeRole();
-    window.location.href = '/'; // Alternativa sin React Router
+    console.log('Sesión cerrada, token y rol eliminados');
 };
 
 

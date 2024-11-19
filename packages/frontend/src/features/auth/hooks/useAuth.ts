@@ -1,5 +1,7 @@
+//hooks/useAuth.ts
 import { login, logout, getUser } from '../utils/AuthService.ts';
-import {useState} from "react"; // Importa las funciones del servicio
+import {useState} from "react";
+
 
 
 
@@ -32,8 +34,9 @@ const useAuth = () => {
     // Función para manejar el logout
     const handleLogout = async () => {
         try {
-            await logout(); // Llama al servicio para cerrar sesión
+            logout(); // Llama al servicio para cerrar sesión
             setUser(null); // Limpia el estado del usuario
+            window.location.href = '/';
         } catch (err) {
             setError('Error al cerrar sesión'); // Maneja errores
         }
