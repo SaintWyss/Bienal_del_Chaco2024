@@ -35,7 +35,7 @@ export const getEsculturas = async () => {
 // Crear una nueva escultura
 export const createEscultura = async (data: any) => {
     try {
-        const response = await axios.post(`${API_URL}/esculturas`, data);
+        const response = await axios.post(`${API_URL}`, data);
         return response.data;
     } catch (error) {
         console.error('Error al crear escultura:', error);
