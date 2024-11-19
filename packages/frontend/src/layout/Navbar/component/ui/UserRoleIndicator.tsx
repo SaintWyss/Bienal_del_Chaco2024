@@ -14,8 +14,8 @@ const UserRoleIndicator: React.FC = () => {
     const isAdmin = role === 'admin'; // Verifica si el rol es admin
 
     const handleLogoutClick = () => {
-        logout(); // Llama a la función de logout
-        window.location.reload(); // Recarga la página para actualizar el estado
+        logout(); // Llama al servicio de logout
+        window.location.href = '/'; // Redirige directamente a la página de inicio
     };
 
     return (

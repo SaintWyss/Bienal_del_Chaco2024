@@ -36,7 +36,7 @@ const useAuth = () => {
         try {
             logout(); // Llama al servicio para cerrar sesión
             setUser(null); // Limpia el estado del usuario
-            window.location.href = '/';
+            window.location.href = '/'; // Redirige a la página de inicio
         } catch (err) {
             setError('Error al cerrar sesión'); // Maneja errores
         }
@@ -48,9 +48,11 @@ const useAuth = () => {
             const currentUser = await getUser(); // Llama al servicio para obtener el usuario
             setUser(currentUser); // Actualiza el estado con el usuario actual
         } catch (err) {
-            setError('Error al obtener usuario'); // Maneja errores
+            console.log('No se pudo obtener el usuario o no hay sesión activa.');
+            setUser(null); // Limpia el estado
         }
     };
+
 
 
     return { user, error, handleLogin, handleLogout, fetchUser }; // Devuelve el estado del usuario y las funciones de autenticación
