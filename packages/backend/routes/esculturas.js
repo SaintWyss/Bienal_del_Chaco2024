@@ -6,12 +6,14 @@ const router = express.Router();
 // Crear una nueva escultura
 router.post('/', async (req, res) => {
     try {
-        const nuevaEscultura = await Escultura.create(req.body);
+        const { nombre, descripcion, fechaCreacion, tematica, eventoID, imagen } = req.body;
+        const nuevaEscultura = await Escultura.create({ nombre, descripcion, fechaCreacion, tematica, eventoID, imagen });
         res.status(201).json(nuevaEscultura);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 });
+
 
 // Obtener todas las esculturas
 router.get('/', async (req, res) => {

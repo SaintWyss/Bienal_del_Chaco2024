@@ -1,43 +1,32 @@
 import React, { useState } from 'react';
-import { createEscultor } from '../../../../../services/SculptorService.ts';  // Cambia a tu servicio adecuado
+import { createEscultor } from '../../../../../services/SculptorService.ts'; // Ajusta la ruta según tu estructura
 
 const SculptorForm = () => {
     const [nombre, setNombre] = useState('');
     const [biografia, setBiografia] = useState('');
     const [fechaNacimiento, setFechaNacimiento] = useState('');
     const [fechaFallecimiento, setFechaFallecimiento] = useState('');
+    const [imagen, setImagen] = useState(''); // Campo para la URL de la imagen
     const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const nuevoEscultor = { nombre, biografia, fechaNacimiento, fechaFallecimiento };
+        const nuevoEscultor = { nombre, biografia, fechaNacimiento, fechaFallecimiento, imagen };
         try {
             console.log('Enviando datos:', nuevoEscultor);
-            const response = await createEscultor(nuevoEscultor);  // Llama a tu servicio para crear el escultor
+            const response = await createEscultor(nuevoEscultor);
             console.log('Respuesta del servidor:', response);
 
-            if (response === 'Escultor creado con éxito') {
-                alert('Escultor creado con éxito');
-                setNombre('');
-                setBiografia('');
-                setFechaNacimiento('');
-                setFechaFallecimiento('');
-            } else {
-                setError('No se pudo crear el escultor. Inténtalo de nuevo.');
-            }
+            alert('Escultor creado con éxito');
+            setNombre('');
+            setBiografia('');
+            setFechaNacimiento('');
+            setFechaFallecimiento('');
+            setImagen('');
         } catch (error: any) {
             console.error('Error al crear escultor:', error);
-            if (error.response) {
-                console.error('Respuesta del servidor:', error.response);
-                setError(`Error: ${error.response.status} - ${error.response.data.message}`);
-            } else if (error.request) {
-                console.error('Error en la solicitud:', error.request);
-                setError('Hubo un error con la solicitud al servidor.');
-            } else {
-                console.error('Error desconocido:', error.message);
-                setError('Hubo un error desconocido al procesar el formulario.');
-            }
+            setError('No se pudo crear el escultor. Inténtalo de nuevo.');
         }
     };
 
@@ -48,7 +37,6 @@ const SculptorForm = () => {
                 placeholder="Nombre del escultor"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
-                autoComplete="off"
                 className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
             />
@@ -56,25 +44,27 @@ const SculptorForm = () => {
                 placeholder="Biografía"
                 value={biografia}
                 onChange={(e) => setBiografia(e.target.value)}
-                autoComplete="off"
                 className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
             />
             <input
                 type="date"
-                placeholder="Fecha de nacimiento"
                 value={fechaNacimiento}
                 onChange={(e) => setFechaNacimiento(e.target.value)}
-                autoComplete="off"
                 className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
             />
             <input
                 type="date"
-                placeholder="Fecha de fallecimiento"
                 value={fechaFallecimiento}
                 onChange={(e) => setFechaFallecimiento(e.target.value)}
-                autoComplete="off"
+                className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+                type="text"
+                placeholder="URL de la imagen"
+                value={imagen}
+                onChange={(e) => setImagen(e.target.value)}
                 className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button

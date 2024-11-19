@@ -1,6 +1,3 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-
 const Escultura = sequelize.define('Escultura', {
     nombre: {
         type: DataTypes.STRING,
@@ -17,7 +14,10 @@ const Escultura = sequelize.define('Escultura', {
     },
     eventoID: {
         type: DataTypes.INTEGER,
-    }
+    },
+    imagen: { // Nuevo campo
+        type: DataTypes.STRING,
+    },
 });
 
 module.exports = Escultura;

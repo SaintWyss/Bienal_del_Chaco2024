@@ -1,6 +1,3 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-
 const Escultor = sequelize.define('Escultor', {
     nombre: {
         type: DataTypes.STRING,
@@ -14,6 +11,9 @@ const Escultor = sequelize.define('Escultor', {
     },
     fechaFallecimiento: {
         type: DataTypes.DATE,
+    },
+    imagen: { // Nuevo campo
+        type: DataTypes.STRING,
     },
 });
 

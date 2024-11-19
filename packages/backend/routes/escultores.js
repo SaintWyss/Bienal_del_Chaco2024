@@ -6,7 +6,8 @@ const router = express.Router();
 // Crear un nuevo escultor
 router.post('/', async (req, res) => {
     try {
-        const nuevoEscultor = await Escultor.create(req.body);
+        const { nombre, biografia, fechaNacimiento, fechaFallecimiento, imagen } = req.body;
+        const nuevoEscultor = await Escultor.create({ nombre, biografia, fechaNacimiento, fechaFallecimiento, imagen });
         res.status(201).json(nuevoEscultor);
     } catch (err) {
         res.status(400).json({ error: err.message });
