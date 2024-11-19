@@ -22,14 +22,15 @@ app.use(cors()); // Permitir peticiones desde cualquier origen
 app.use(express.json()); // Parsear JSON en el cuerpo de las solicitudes
 
 // Rutas de tu API
-app.use('/api/eventos', eventosRouter);
-app.use('/api/escultores', escultoresRouter);
-app.use('/api/esculturas', esculturasRouter);
-app.use('/api/imagenes', imagenesRouter);
+app.use('/eventos', eventosRouter);
+app.use('/escultores', escultoresRouter);
+app.use('/esculturas', esculturasRouter);
+app.use('/imagenes', imagenesRouter);
 app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes); // Ruta para usuarios
-app.use('/api/sponsors', sponsorRoutes);
-app.use('/api/votar', votacionesRouter);
+app.use('/api/user', userRoutes);
+app.use('/sponsors', sponsorRoutes);
+app.use('/votar', votacionesRouter);
+
 
 // Manejar rutas no definidas (esto evita el error de intentar servir un archivo estático)
 app.use('*', (req, res) => {

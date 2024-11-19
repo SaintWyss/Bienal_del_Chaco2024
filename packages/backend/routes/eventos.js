@@ -15,10 +15,12 @@ router.post('/', async (req, res) => {
 
 // Obtener todos los eventos
 router.get('/', async (req, res) => {
+    console.log('Entrando a la ruta /eventos');
     try {
         const eventos = await Evento.findAll();
         res.json(eventos);
     } catch (err) {
+        console.error('Error al obtener eventos:', err);
         res.status(500).json({ error: err.message });
     }
 });
