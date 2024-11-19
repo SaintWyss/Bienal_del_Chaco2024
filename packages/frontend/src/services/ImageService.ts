@@ -2,13 +2,8 @@
 import axios from 'axios';
 
 // Define la URL base para las peticiones al backend
-const API_URL = '${process.env.API_URL}/api/images'; // Reemplaza con tu URL real
+const API_URL = import.meta.env.VITE_API_URL + '/api/images'; // Reemplaza con tu URL real
 
-/**
- * Obtiene una lista de imágenes asociadas a un evento o escultura.
- * @param itemId - El ID del evento o escultura.
- * @returns Una promesa que resuelve con la lista de imágenes.
- */
 export const fetchImagesByItemId = async (itemId: string) => {
     try {
         // Realiza una solicitud GET a la API para obtener imágenes asociadas

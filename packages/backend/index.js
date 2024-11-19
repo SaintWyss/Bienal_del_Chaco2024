@@ -9,13 +9,11 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const sponsorRoutes = require('./routes/sponsor');
 const votacionesRouter = require('./routes/votaciones');
-const eventosRoutes = require('./routes/eventos');
+require('dotenv').config(); // Cargar variables de entorno
 
 // Crear la aplicación de Express
 const app = express();
-const PORT = process.env.PORT || 3000; // Usar el puerto especificado en las variables de entorno o 3000 por defecto
-
-require('dotenv').config(); // Cargar variables de entorno
+const PORT = process.env.PORT || 3000; // Usar el puerto especificado en .env o 3000 por defecto
 
 // Middlewares
 app.use(cors()); // Permitir peticiones desde cualquier origen
@@ -31,8 +29,7 @@ app.use('/api/user', userRoutes);
 app.use('/sponsors', sponsorRoutes);
 app.use('/votar', votacionesRouter);
 
-
-// Manejar rutas no definidas (esto evita el error de intentar servir un archivo estático)
+// Manejar rutas no definidas
 app.use('*', (req, res) => {
     res.status(404).json({ error: 'Ruta no encontrada en el backend' });
 });
@@ -41,10 +38,24 @@ app.use('*', (req, res) => {
 sequelize
     .sync({ alter: true })
     .then(() => {
-        app.listen(PORT, () => {
+        const server = app.listen(PORT, () => {
             console.log(`Servidor backend corriendo en el puerto ${PORT}`);
         });
+
+        // Detectar si el puerto está ocupado
+        server.on('error', (error) => {
+            if (error.code === 'EADDRINUSE') {
+                console.error(`El puerto ${PORT} ya está en uso.`);
+                server.close(() => {
+                    console.log('Intentando usar un puerto diferente...');
+                    app.listen(0, () => {
+                        const address = server.address();
+                        console.log(`Servidor ahora corriendo en un puerto alternativo: ${address.port}`);
+                    });
+                });
+            }
+        });
     })
-    .catch(err => {
+    .catch((err) => {
         console.error('Error al conectar con la base de datos:', err);
     });

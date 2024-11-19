@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '${process.env.API_URL}/escultores';
+const API_URL = import.meta.env.VITE_API_URL + '/escultores';
 
 // Obtener todos los escultores
 export const getEscultores = async () => {

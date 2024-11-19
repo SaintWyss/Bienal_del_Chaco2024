@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../../layout/footer/Footer.tsx';
 import Navbar from "../../layout/Navbar/Navbar.tsx";
 import { useParams } from 'react-router-dom';
-import { getEvento } from '../../services/EventService.ts'; // Servicio para obtener un evento por
+import { getEventoById } from '../../services/EventService.ts'; // Servicio para obtener un evento por
 import SculptureList from "../sculptures/components/SculptureList.tsx";
 
 const EventDetail: React.FC = () => {
@@ -14,7 +14,7 @@ const EventDetail: React.FC = () => {
     useEffect(() => {
         const fetchEvento = async () => {
             try {
-                const data = await getEvento(id); // Llamada al servicio para obtener el evento
+                const data = await getEventoById(id); // Llamar a la función para obtener el evento
                 setEvento(data);
             } catch (error: any) {
                 setError('No se pudo obtener el evento. Intenta nuevamente.');

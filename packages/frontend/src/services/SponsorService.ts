@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '${process.env.API_URL}/sponsors';
+const API_URL = import.meta.env.VITE_API_URL + '/sponsors';
 
 // Obtener todos los sponsors
 export const getSponsors = async () => {
