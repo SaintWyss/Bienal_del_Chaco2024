@@ -1,6 +1,7 @@
 //hooks/useAuth.ts
 import { login, logout, getUser } from '../utils/AuthService.ts';
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -34,9 +35,10 @@ const useAuth = () => {
     // Función para manejar el logout
     const handleLogout = async () => {
         try {
-            logout(); // Llama al servicio para cerrar sesión
-            setUser(null); // Limpia el estado del usuario
-            window.location.href = '/'; // Redirige a la página de inicio
+            logout(); // Limpia el token y rol
+            setUser(null); // Limpia el estado
+            const navigate = useNavigate();
+            navigate('/'); // Redirige a la ruta raíz
         } catch (err) {
             setError('Error al cerrar sesión'); // Maneja errores
         }
