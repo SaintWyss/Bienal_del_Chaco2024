@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../../layout/footer/Footer.tsx';
-import Navbar from "../../layout/Navbar/Navbar.tsx";
 import EventCard from "../events/components/ui/EventCard.tsx"; // Componente para mostrar los detalles del evento
 
 const VotingPage: React.FC = () => {
@@ -36,7 +35,7 @@ const VotingPage: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar />
+
             <div className="p-6">
                 <h1 className="text-4xl font-bold">{evento.nombre}</h1>
                 <p className="text-xl mt-4">{evento.descripcion}</p>

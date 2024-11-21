@@ -1,7 +1,7 @@
 // EventDetail.tsx
 import React, { useState, useEffect } from 'react';
 import Footer from '../../layout/footer/Footer.tsx';
-import Navbar from "../../layout/Navbar/Navbar.tsx";
+
 import { useParams } from 'react-router-dom';
 import { getEventoById } from '../../services/EventService.ts'; // Servicio para obtener un evento por
 import SculptureList from "../sculptures/components/SculptureList.tsx";
@@ -37,7 +37,7 @@ const EventDetail: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar/>
+
             <div className="p-6">
                 <h1 className="text-4xl font-bold">{evento.nombre}</h1>
                 <p className="text-xl mt-4">{evento.descripcion}</p>

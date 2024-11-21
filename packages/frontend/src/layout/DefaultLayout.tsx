@@ -1,12 +1,19 @@
-import Footer from "./footer/Footer.tsx";
 import Navbar from "./Navbar/Navbar.tsx";
+import { INavbarLink } from "./Navbar/interfaces/INavigationLink.ts";
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
+    const navbarLinks: INavbarLink[] = [
+        { id: "hero", label: "Inicio" },
+        { id: "eventos", label: "Eventos" },
+        { id: "esculturas", label: "Esculturas" },
+        { id: "escultores", label: "Escultores" },
+        { id: "maps", label: "Maps" },
+    ];
+
     return (
-        <div className="bg-base-100 text-neutral">
-            <Navbar />
+        <div>
+            <Navbar links={navbarLinks} />
             <main>{children}</main>
-            <Footer />
         </div>
     );
 }

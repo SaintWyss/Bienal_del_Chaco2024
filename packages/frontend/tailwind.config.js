@@ -1,16 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  // Activar el modo oscuro utilizando clases (útil para usarlo con un botón que cambie el tema)
-  darkMode: 'class', // o 'media' si prefieres basarte en la preferencia del sistema
+  darkMode: 'class', // Activa el modo oscuro basado en clases
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./public/index.html",  // Esto incluirá todos los archivos dentro de src que terminen en js, ts, jsx, o tsx
+    "./src/**/*.{js,ts,jsx,tsx}", // Archivos dentro de src
+    "./public/index.html",       // Incluye el archivo HTML principal
   ],
   theme: {
     extend: {
+      screens: {
+        // Breakpoints adicionales para más control
+        xs: "480px", // Dispositivos muy pequeños
+        '3xl': "1920px", // Pantallas extra grandes
+      },
       colors: {
+        primary: "#338ef7",
+        secondary: "#7828C8",
+        // Tus colores personalizados ya son bastante completos
         white: "#FFFFFF",
         black: "#000000",
+        // Mantengo tus colores existentes
         blue: {
           50: "#e6f1fe",
           100: "#cce3fd",
@@ -23,108 +31,29 @@ export default {
           800: "#002e62",
           900: "#001731",
         },
-        purple: {
-          50: "#F2EAFA",
-          100: "#E4D4F4",
-          200: "#C9A9E9",
-          300: "#AE7EDE",
-          400: "#9353D3",
-          500: "#7828C8",
-          600: "#6020A0",
-          700: "#481878",
-          800: "#301050",
-          900: "#180828",
-        },
-        green: {
-          50: "#E8FAF0",
-          100: "#D1F4E0",
-          200: "#A2E9C1",
-          300: "#74DFA2",
-          400: "#45D483",
-          500: "#17C964",
-          600: "#12A150",
-          700: "#0E793C",
-          800: "#095028",
-          900: "#052814",
-        },
-        red: {
-          50: "#FEE7EF",
-          100: "#FDD0DF",
-          200: "#FAA0BF",
-          300: "#F871A0",
-          400: "#F54180",
-          500: "#F31260",
-          600: "#C20E4D",
-          700: "#920B3A",
-          800: "#610726",
-          900: "#310413",
-        },
-        pink: {
-          50: "#FFEDFA",
-          100: "#FFDCF5",
-          200: "#FFB8EB",
-          300: "#FF95E1",
-          400: "#FF71D7",
-          500: "#FF4ECD",
-          600: "#CC3EA4",
-          700: "#992F7B",
-          800: "#661F52",
-          900: "#331029",
-        },
-        yellow: {
-          50: "#FEFCE8",
-          100: "#FDEDD3",
-          200: "#FBDBA7",
-          300: "#F9C97C",
-          400: "#F7B750",
-          500: "#F5A524",
-          600: "#C4841D",
-          700: "#936316",
-          800: "#62420E",
-          900: "#312107",
-        },
-        cyan: {
-          50: "#F0FCFF",
-          100: "#E6FAFE",
-          200: "#D7F8FE",
-          300: "#C3F4FD",
-          400: "#A5EEFD",
-          500: "#7EE7FC",
-          600: "#06B7DB",
-          700: "#09AACD",
-          800: "#0E8AAA",
-          900: "#053B48",
-        },
-        zinc: {
-          50: "#FAFAFA",
-          100: "#F4F4F5",
-          200: "#E4E4E7",
-          300: "#D4D4D8",
-          400: "#A1A1AA",
-          500: "#71717A",
-          600: "#52525B",
-          700: "#3F3F46",
-          800: "#27272A",
-          900: "#18181B",
-        },
+        // Añadir más colores si es necesario
+      },
+      transitionProperty: {
+        height: "height",
       },
       animation: {
-        fade: 'fadeIn 2s ease-in-out',
-        blob: 'blob 7s infinite',
-        bounceSlow: 'bounce 3s infinite',
+        fade: "fadeIn 2s ease-in-out",
+        blob: "blob 7s infinite",
+        bounceSlow: "bounce 3s infinite",
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         blob: {
-          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
-          '50%': { transform: 'translate(30px, -20px) scale(1.1)' },
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "50%": { transform: "translate(30px, -20px) scale(1.1)" },
         },
+      },
     },
+
   },
-  // Configurar daisyUI para que funcione con temas y personalización
   daisyui: {
     themes: [
       {
@@ -154,9 +83,13 @@ export default {
     ],
   },
   plugins: [
-    require('daisyui'),
-    require('@tailwindcss/forms'), // Mejora los formularios
-    require('@tailwindcss/typography'), // Provee estilos para textos
-    require('@tailwindcss/aspect-ratio'), // Soporte para imágenes y videos responsivos
+    require("daisyui"), // Herramientas de UI estilizadas
+    require("@tailwindcss/forms"), // Mejora formularios
+    require("@tailwindcss/typography"), // Para textos largos y blogs
+    require("@tailwindcss/aspect-ratio"), // Para manejar proporciones en imágenes/videos
+    require("tailwind-scrollbar-hide"), // Oculta barras de desplazamiento
   ],
-},}
+  corePlugins: {
+    preflight: false,
+  },
+};

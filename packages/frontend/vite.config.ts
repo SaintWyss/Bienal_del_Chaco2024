@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     plugins: [react()],
     server: {
+        host: '0.0.0.0',
         port: 5173, // Puerto predeterminado de Vite
         strictPort: true, // Asegúrate de que se use este puerto y no cambie
         watch: {

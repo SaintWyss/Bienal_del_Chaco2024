@@ -1,6 +1,5 @@
 import Footer from "../../layout/footer/Footer.tsx";
 import { useEffect, useState } from "react";
-import Navbar from "../../layout/Navbar/Navbar.tsx";
 import Menu from "./components/Menu.tsx";
 import EventManagement from "./components/event/EventManagement.tsx";
 import SculptorManagement from "./components/sculptor/SculptorManagement.tsx";
@@ -38,7 +37,7 @@ const AdminPage: React.FC = () => {
                     />
                 </div>
 
-                <Navbar/>
+
                 <Menu onSelect={setSelectedOption} selectedSection={selectedOption}/>
                 {selectedOption === 'events' && <EventManagement/>}
                 {selectedOption === 'sculptures' && <SculptureManagement/>}
