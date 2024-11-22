@@ -13,7 +13,7 @@ require('dotenv').config(); // Cargar variables de entorno
 
 // Crear la aplicación de Express
 const app = express();
-const PORT = process.env.PORT; // Usar el puerto especificado en .env o 3000 por defecto
+const PORT = process.env.PORT || 3000; // Usar el puerto especificado en .env o 3000 por defecto
 
 // Middlewares
 app.use(cors()); // Permitir peticiones desde cualquier origen

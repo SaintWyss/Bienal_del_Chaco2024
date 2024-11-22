@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_bienal
+    environment:
+      POSTGRES_USER: bienal_user
+      POSTGRES_PASSWORD: bienal_password
+      POSTGRES_DB: bienal_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - bienal_network
+
+  backend:
+    build:
+      context: ./packages/backend
+      dockerfile: Dockerfile
+    container_name: backend_bienal
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://bienal_user:bienal_password@db:5432/bienal_db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - bienal_network
+
+  frontend:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile
+    container_name: frontend_bienal
+    environment:
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - bienal_network
+
+volumes:
+  postgres_data:
+
+networks:
+  bienal_network:
